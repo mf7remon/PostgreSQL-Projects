@@ -79,3 +79,15 @@ SELECT * FROM students WHERE roll = 1040;
 DELETE FROM students
 WHERE roll = 1040;
 SELECT * FROM students WHERE roll = 1040;
+
+SELECT * FROM students
+WHERE department = 'CSE';
+
+SELECT * FROM students
+ORDER BY roll ASC;
+
+SELECT COUNT(*) FROM students;
+
+SELECT department, COUNT(*)
+FROM students
+GROUP BY department;
