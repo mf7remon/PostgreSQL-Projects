@@ -77,6 +77,44 @@ CREATE TABLE books
         ON UPDATE CASCADE
 );
 
-SELECT current_database();
+CREATE TABLE borrow_records
+(
+    borrow_id SERIAL PRIMARY KEY,
+
+    student_id INTEGER NOT NULL,
+
+    book_id INTEGER NOT NULL,
+
+    borrow_date DATE NOT NULL,
+
+    due_date DATE NOT NULL,
+
+    return_date DATE,
+
+    status VARCHAR(20)
+    CHECK(status IN ('Borrowed','Returned','Late')),
+
+    CONSTRAINT fk_student
+
+        FOREIGN KEY(student_id)
+
+        REFERENCES students(student_id)
+
+        ON DELETE CASCADE
+
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_book
+
+        FOREIGN KEY(book_id)
+
+        REFERENCES books(book_id)
+
+        ON DELETE RESTRICT
+
+        ON UPDATE CASCADE
+);
+
+
 
 
