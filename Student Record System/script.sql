@@ -11,7 +11,7 @@ CREATE TABLE students (
 
 INSERT INTO students (name, roll, department, email)
 VALUES
-('Ladduguddu', 1362, 'CSE', 'jui@gmail.com'),
+('Ladduguddu', 1362, 'CSE', 'rahim101@gmail.com'),
 ('Rahim Uddin', 1001, 'CSE', 'rahim1001@diu.edu.bd'),
 ('Karim Khan', 1002, 'EEE', 'karim1002@diu.edu.bd'),
 ('Nusrat Jahan', 1003, 'CSE', 'nusrat1003@diu.edu.bd'),
@@ -68,4 +68,14 @@ VALUES
 ('Zubair Ahmed', 1050, 'EEE', 'zubair1050@diu.edu.bd');
 
 SELECT * FROM students;
+
 SELECT * FROM students WHERE roll = 1362;
+
+UPDATE students
+SET email = 'jui1362@gmail.com'
+WHERE roll = 1362;
+
+SELECT * FROM students WHERE roll = 1040;
+DELETE FROM students
+WHERE roll = 1040;
+SELECT * FROM students WHERE roll = 1040;
