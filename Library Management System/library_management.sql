@@ -16,3 +16,15 @@ CREATE TABLE students
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE authors
+(
+    author_id SERIAL PRIMARY KEY,
+
+    full_name VARCHAR(100) NOT NULL,
+
+    country VARCHAR(50),
+
+    birth_date DATE
+);
+
