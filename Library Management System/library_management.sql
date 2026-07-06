@@ -35,6 +35,7 @@ CREATE TABLE categories
     category_name VARCHAR(50) UNIQUE NOT NULL
 );
 
+
 CREATE TABLE books
 (
     book_id SERIAL PRIMARY KEY,
@@ -75,4 +76,7 @@ CREATE TABLE books
 
         ON UPDATE CASCADE
 );
+
+SELECT current_database();
+
 
