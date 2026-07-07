@@ -194,3 +194,125 @@ SELECT
 FROM generate_series(1,350) g;
 
 
+SELECT * FROM students;
+SELECT full_name, email FROM students;
+
+SELECT * FROM students
+WHERE department = 'CSE';
+
+SELECT * FROM students
+ORDER BY full_name ASC;
+
+SELECT * FROM students
+LIMIT 10;
+
+SELECT * FROM students
+WHERE full_name LIKE 'Student_1%';
+
+SELECT * FROM students
+WHERE email LIKE '%@diu.edu.bd';
+
+SELECT * FROM students
+WHERE roll
+BETWEEN 1020 AND 1050;
+
+SELECT * FROM students
+WHERE department IN ('CSE','EEE');
+
+SELECT COUNT(*)
+FROM students;
+
+
+SELECT * FROM books;
+SELECT * FROM books
+WHERE publication_year > 2018;
+
+SELECT * FROM books
+ORDER BY publication_year DESC;
+
+SELECT * FROM books
+ORDER BY available_copies DESC;
+
+SELECT * FROM books
+ORDER BY publication_year DESC
+LIMIT 5;
+
+SELECT * FROM books
+WHERE title LIKE 'Book_2%';
+
+SELECT * FROM books
+WHERE publication_year
+BETWEEN 2010 AND 2020;
+
+SELECT SUM(total_copies)
+FROM books;
+
+SELECT AVG(total_copies)
+FROM books;
+
+SELECT MAX(publication_year)
+FROM books;
+
+SELECT MIN(publication_year)
+FROM books;
+
+
+
+
+
+SELECT * FROM borrow_records
+WHERE status = 'Borrowed';
+
+
+SELECT * FROM borrow_records
+WHERE status IN ('Borrowed','Late');
+
+
+SELECT DISTINCT department
+FROM students;
+
+SELECT DISTINCT country
+FROM authors;
+
+
+SELECT department,
+COUNT(*)
+FROM students
+GROUP BY department;
+
+
+SELECT status,
+COUNT(*)
+FROM borrow_records
+GROUP BY status;
+
+
+SELECT publication_year,
+COUNT(*)
+FROM books
+GROUP BY publication_year
+ORDER BY publication_year;
+
+
+SELECT department,
+COUNT(*)
+FROM students
+GROUP BY department
+HAVING COUNT(*) > 30;
+
+
+SELECT publication_year,
+COUNT(*)
+FROM books
+GROUP BY publication_year
+HAVING COUNT(*) > 5;
+
+
+SELECT status,
+COUNT(*)
+FROM borrow_records
+GROUP BY status
+HAVING COUNT(*) > 50;
+
+
+
