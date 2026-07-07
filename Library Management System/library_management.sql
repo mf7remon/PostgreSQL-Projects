@@ -142,4 +142,25 @@ SELECT
 FROM generate_series(1,20) g;
 
 
+INSERT INTO categories (category_name)
+SELECT 
+    CASE g
+        WHEN 1 THEN 'Programming'
+        WHEN 2 THEN 'Database'
+        WHEN 3 THEN 'Networking'
+        WHEN 4 THEN 'AI'
+        WHEN 5 THEN 'Data Science'
+        WHEN 6 THEN 'Mathematics'
+        WHEN 7 THEN 'Physics'
+        WHEN 8 THEN 'Security'
+        WHEN 9 THEN 'Web Development'
+        WHEN 10 THEN 'Mobile Apps'
+        WHEN 11 THEN 'Operating Systems'
+        WHEN 12 THEN 'Software Engineering'
+        WHEN 13 THEN 'Cloud Computing'
+        WHEN 14 THEN 'Machine Learning'
+        ELSE 'General Knowledge'
+    END
+FROM generate_series(1,15) g;
+
 
