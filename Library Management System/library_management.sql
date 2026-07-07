@@ -195,6 +195,7 @@ FROM generate_series(1,350) g;
 
 
 SELECT * FROM students;
+
 SELECT full_name, email FROM students;
 
 SELECT * FROM students
@@ -224,6 +225,7 @@ FROM students;
 
 
 SELECT * FROM books;
+
 SELECT * FROM books
 WHERE publication_year > 2018;
 
@@ -313,6 +315,247 @@ COUNT(*)
 FROM borrow_records
 GROUP BY status
 HAVING COUNT(*) > 50;
+
+
+
+
+
+
+SELECT
+    s.full_name,
+    b.title,
+    br.borrow_date,
+    br.status
+FROM borrow_records br
+INNER JOIN students s
+ON br.student_id = s.student_id
+INNER JOIN books b
+ON br.book_id = b.book_id;
+
+
+SELECT
+    s.student_id,
+    s.full_name,
+    b.title
+FROM students s
+INNER JOIN borrow_records br
+ON s.student_id = br.student_id
+INNER JOIN books b
+ON br.book_id = b.book_id;
+
+
+SELECT
+    s.full_name,
+    br.borrow_date
+FROM students s
+LEFT JOIN borrow_records br
+ON s.student_id = br.student_id;
+
+
+SELECT
+    b.title,
+    br.status
+FROM books b
+LEFT JOIN borrow_records br
+ON b.book_id = br.book_id;
+
+
+SELECT
+    s.full_name,
+    br.borrow_id
+FROM students s
+RIGHT JOIN borrow_records br
+ON s.student_id = br.student_id;
+
+
+SELECT
+    b.title,
+    br.borrow_date
+FROM books b
+RIGHT JOIN borrow_records br
+ON b.book_id = br.book_id;
+
+
+SELECT
+
+    s.full_name,
+
+    b.title,
+
+    a.full_name AS author,
+
+    br.borrow_date
+
+FROM borrow_records br
+
+JOIN students s
+ON br.student_id = s.student_id
+
+JOIN books b
+ON br.book_id = b.book_id
+
+JOIN authors a
+ON b.author_id = a.author_id;
+
+
+SELECT
+
+    s.full_name,
+
+    b.title,
+
+    c.category_name
+
+FROM borrow_records br
+
+JOIN students s
+ON br.student_id=s.student_id
+
+JOIN books b
+ON br.book_id=b.book_id
+
+JOIN categories c
+ON b.category_id=c.category_id;
+
+
+SELECT *
+FROM books
+WHERE publication_year >
+(
+SELECT AVG(publication_year)
+FROM books
+);
+
+
+SELECT *
+FROM students
+WHERE department=
+(
+SELECT department
+FROM students
+GROUP BY department
+ORDER BY COUNT(*) DESC
+LIMIT 1
+);
+
+
+SELECT *
+FROM books
+WHERE publication_year=
+(
+SELECT MAX(publication_year)
+FROM books
+);
+
+
+SELECT *
+
+FROM students s
+
+WHERE
+
+(
+SELECT COUNT(*)
+
+FROM borrow_records br
+
+WHERE br.student_id=s.student_id
+
+)>2;
+
+
+SELECT *
+
+FROM authors a
+
+WHERE
+
+(
+SELECT COUNT(*)
+
+FROM books b
+
+WHERE b.author_id=a.author_id
+
+)>5;
+
+
+SELECT *
+
+FROM students s
+
+WHERE EXISTS
+
+(
+SELECT 1
+
+FROM borrow_records br
+
+WHERE br.student_id=s.student_id
+);
+
+
+SELECT *
+
+FROM books b
+
+WHERE EXISTS
+
+(
+SELECT 1
+
+FROM borrow_records br
+
+WHERE br.book_id=b.book_id
+);
+
+
+SELECT *
+
+FROM students s
+
+WHERE NOT EXISTS
+
+(
+SELECT 1
+
+FROM borrow_records br
+
+WHERE br.student_id=s.student_id
+);
+
+
+SELECT *
+
+FROM books b
+
+WHERE NOT EXISTS
+
+(
+SELECT 1
+
+FROM borrow_records br
+
+WHERE br.book_id=b.book_id
+);
+
+
+SELECT full_name
+FROM students
+
+UNION
+
+SELECT full_name
+FROM authors;
+
+
+SELECT department
+FROM students
+
+UNION ALL
+
+SELECT category_name
+FROM categories;
 
 
 
