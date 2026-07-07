@@ -117,4 +117,16 @@ CREATE TABLE borrow_records
 
 
 
+INSERT INTO students (full_name, roll, department, email)
+SELECT 
+    'Student_' || g,
+    1000 + g,
+    CASE 
+        WHEN g % 3 = 0 THEN 'CSE'
+        WHEN g % 3 = 1 THEN 'EEE'
+        ELSE 'BBA'
+    END,
+    'student' || g || '@diu.edu.bd'
+FROM generate_series(1,150) g;
+
 
