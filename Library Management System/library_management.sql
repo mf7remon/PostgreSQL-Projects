@@ -130,4 +130,16 @@ SELECT
 FROM generate_series(1,150) g;
 
 
+INSERT INTO authors (full_name, country, birth_date)
+SELECT 
+    'Author_' || g,
+    CASE 
+        WHEN g % 3 = 0 THEN 'Bangladesh'
+        WHEN g % 3 = 1 THEN 'India'
+        ELSE 'USA'
+    END,
+    (DATE '1970-01-01' + (g * 365))
+FROM generate_series(1,20) g;
+
+
 
