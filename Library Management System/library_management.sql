@@ -164,3 +164,15 @@ SELECT
 FROM generate_series(1,15) g;
 
 
+INSERT INTO books (title, isbn, publication_year, total_copies, available_copies, author_id, category_id)
+SELECT 
+    'Book_' || g,
+    'ISBN-' || (100000 + g),
+    2000 + (g % 25),
+    5 + (g % 10),
+    5 + (g % 10),
+    (g % 20) + 1,
+    (g % 15) + 1
+FROM generate_series(1,200) g;
+
+
