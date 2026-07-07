@@ -559,3 +559,82 @@ FROM categories;
 
 
 
+SELECT *
+
+FROM borrow_records
+
+WHERE
+
+status='Late'
+
+OR due_date < CURRENT_DATE;
+
+
+SELECT
+
+a.full_name,
+
+COUNT(b.book_id) AS books_written
+
+FROM authors a
+
+JOIN books b
+
+ON a.author_id=b.author_id
+
+GROUP BY a.full_name
+
+ORDER BY books_written DESC;
+
+
+
+SELECT
+
+a.full_name,
+
+COUNT(b.book_id) AS books_written
+
+FROM authors a
+
+JOIN books b
+
+ON a.author_id=b.author_id
+
+GROUP BY a.full_name
+
+ORDER BY books_written DESC;
+
+
+
+SELECT
+
+s.full_name,
+
+COUNT(br.borrow_id) AS borrowed
+
+FROM students s
+
+JOIN borrow_records br
+
+ON s.student_id=br.student_id
+
+GROUP BY s.full_name
+
+ORDER BY borrowed DESC;
+
+
+SELECT
+
+EXTRACT(MONTH FROM borrow_date)
+AS month,
+
+COUNT(*) AS total_books
+
+FROM borrow_records
+
+GROUP BY month
+
+ORDER BY month;
+
+
+
