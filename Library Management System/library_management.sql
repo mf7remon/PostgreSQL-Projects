@@ -176,3 +176,21 @@ SELECT
 FROM generate_series(1,200) g;
 
 
+INSERT INTO borrow_records (student_id, book_id, borrow_date, due_date, return_date, status)
+SELECT 
+    (g % 150) + 1,
+    (g % 200) + 1,
+    CURRENT_DATE - (g % 30),
+    CURRENT_DATE + (10 - (g % 5)),
+    CASE 
+        WHEN g % 3 = 0 THEN CURRENT_DATE
+        ELSE NULL
+    END,
+    CASE 
+        WHEN g % 3 = 0 THEN 'Returned'
+        WHEN g % 7 = 0 THEN 'Late'
+        ELSE 'Borrowed'
+    END
+FROM generate_series(1,350) g;
+
+
