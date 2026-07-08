@@ -637,4 +637,14 @@ GROUP BY month
 ORDER BY month;
 
 
+CREATE OR REPLACE VIEW student_information AS
+SELECT
+    student_id,
+    name,
+    roll,
+    department,
+    email,
+    created_at
+FROM students;
+SELECT * FROM student_information;
 
